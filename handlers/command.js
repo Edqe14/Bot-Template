@@ -4,8 +4,9 @@ const Collection = require('@discordjs/collection')
 module.exports = (bot, config, cooldowns) => {
   bot.on('message', async message => {
     if (message.author === bot.user) return
-
+    
     const prefix = config.prefix
+    if (!message.content.startsWith(prefix)) return;
     const args = message.content.slice(prefix.length).split(' ')
     const cmd = args.shift().toLowerCase()
 
@@ -21,8 +22,8 @@ module.exports = (bot, config, cooldowns) => {
       }
     }
 
-    if (c.guildOnly && message.channel.type !== 'text') { return message.reply("I can't execute that command inside a dm!") }
-
+    if (c.guildOnly && message.channel.type !== 'text') return message.reply("I can't execute that command inside a dm!")
+    if (c.nsfw && !message.channel.nsfw) return message.reply("This command is only works only NSFW")
     if (c.args && !args.length) {
       let reply = `You didn't provide any arguments, ${message.author}!`
 
