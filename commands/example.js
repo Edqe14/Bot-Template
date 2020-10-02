@@ -6,6 +6,7 @@ module.exports = exports = {
   permissions: null,
   aliases: [],
   usage: '',
+  nsfw: false,
   run (_, message) {
     message.channel.send('test')
   }
