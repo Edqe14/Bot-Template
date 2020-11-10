@@ -8,6 +8,6 @@ module.exports = exports = {
   usage: '',
   nsfw: false,
   run (_, message) {
-    message.channel.send('test')
+    message.channel.send('test');
   }
-}
+};
