@@ -1,21 +1,22 @@
-const { Command } = require('discord-akairo');
+import { Command } from 'discord-akairo';
+import { Message } from 'discord.js';
 
 module.exports = class Example extends Command {
-  constructor () {
+  constructor() {
     super('hello', {
       aliases: ['hello'],
       category: 'Misc',
       description: {
         content: 'Hello World!',
         usage: 'hello',
-        examples: ['hello']
+        examples: ['hello'],
       },
       ratelimit: 3,
-      channel: 'guild'
+      channel: 'guild',
     });
   }
 
-  exec (message) {
+  exec(message: Message) {
     message.channel.send('Hello World!');
   }
 };

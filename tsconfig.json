@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "declaration": false,
+    "removeComments": false,
+    "pretty": false,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "target": "es2019",
+    "lib": [
+      "esnext",
+      "esnext.array",
+      "esnext.asynciterable",
+      "esnext.intl",
+      "esnext.symbol"
+    ],
+    "noImplicitAny": true,
+    "sourceMap": false,
+    "skipDefaultLibCheck": true,
+    "baseUrl": "./src/"
+  },
+  "exclude": [
+    "tests"
+  ]
+}

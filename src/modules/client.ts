@@ -1,17 +1,31 @@
-const { join } = require('path');
-const { AkairoClient, CommandHandler, ListenerHandler } = require('discord-akairo');
+import { join } from 'path';
+import {
+  AkairoClient,
+  CommandHandler,
+  ListenerHandler,
+  InhibitorHandler,
+} from 'discord-akairo';
+import { configInterface } from '../config';
 
-class Client extends AkairoClient {
-  constructor (config) {
-    super({
-      ownerID: config.ownerIDs
-    }, {
-      disableMentions: 'everyone'
-    });
+export default class Client extends AkairoClient {
+  public config: configInterface;
+  public listenerHandler: ListenerHandler;
+  public commandHandler: CommandHandler;
+  public inhibitorHandler: InhibitorHandler;
+
+  constructor(config: configInterface) {
+    super(
+      {
+        ownerID: config.ownerIDs,
+      },
+      {
+        disableMentions: 'everyone',
+      }
+    );
 
     this.config = config;
     this.listenerHandler = new ListenerHandler(this, {
-      directory: join(__dirname, '..', 'listeners')
+      directory: join(__dirname, '..', 'listeners'),
     });
     this.commandHandler = new CommandHandler(this, {
       directory: join(__dirname, '..', 'commands'),
@@ -31,25 +45,31 @@ class Client extends AkairoClient {
           ended:
             'You exceeded the maximum tries, this command has been cancelled.',
           retries: 3,
-          time: 30000
+          time: 30000,
         },
-        otherwise: ''
+        otherwise: '',
       },
-      ignorePermissions: this.config.ownerIDs
+      ignorePermissions: this.config.ownerIDs,
+    });
+    this.inhibitorHandler = new InhibitorHandler(this, {
+      directory: join(__dirname, '..', 'inhibitors'),
     });
   }
 
   /**
    * Initialize handlers & listeners
    */
-  async _init () {
-    this.commandHandler.useListenerHandler(this.listenerHandler);
+  _init(): void {
+    this.commandHandler
+      .useInhibitorHandler(this.inhibitorHandler)
+      .useListenerHandler(this.listenerHandler);
     this.listenerHandler.setEmitters({
       commandHandler: this.commandHandler,
       listenerHandler: this.listenerHandler,
-      process
+      process,
     });
 
+    this.inhibitorHandler.loadAll();
     this.commandHandler.loadAll();
     this.listenerHandler.loadAll();
   }
@@ -57,10 +77,9 @@ class Client extends AkairoClient {
   /**
    * Start the bot
    */
-  async start () {
-    await this._init();
-    return this.login(this.config.token);
+  start(): Client {
+    this._init();
+    this.login(this.config.token);
+    return this;
   }
 }
-
-module.exports = Client;
