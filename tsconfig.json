@@ -1,11 +1,8 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "declaration": false,
-    "removeComments": false,
-    "pretty": false,
     "outDir": "dist",
-    "esModuleInterop": true,
+    "rootDir": "src",
     "module": "commonjs",
     "target": "es2019",
     "lib": [
@@ -15,12 +12,23 @@
       "esnext.intl",
       "esnext.symbol"
     ],
+    "declaration": false,
+    "removeComments": false,
+    "pretty": false,
     "noImplicitAny": true,
     "sourceMap": false,
+    "esModuleInterop": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": "./src/"
+    "resolveJsonModule": true,
+    "baseUrl": "./src/",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
   },
   "exclude": [
-    "tests"
+    "tests",
+    "node_modules",
   ]
 }
