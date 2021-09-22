@@ -8,7 +8,8 @@ Dotenv.config({
 });
 
 export interface Config extends ClientOptions {
-  owners: string[]
+  owners: string[];
+  debug?: boolean;
 }
 
 export const PREFIX = 'sp!';
@@ -32,7 +33,8 @@ export const CLIENT_CONFIG: Config = {
       name: 'to your request',
       type: 'LISTENING'
     }]
-  }
+  },
+  debug: process.env.NODE_ENV !== 'production'
 };
 export const TOKEN = process.env.TOKEN;
 

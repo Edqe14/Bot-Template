@@ -3,11 +3,12 @@ import { CommandOptions, Command } from '@sapphire/framework';
 import type { Message } from 'discord.js';
 
 @ApplyOptions<CommandOptions>({
-  aliases: ['example'],
-  description: 'Example'
+  aliases: ['ownerOnly'],
+  description: 'Example ownerOnly',
+  preconditions: ['OwnerOnly']
 })
-export default class ExampleCommand extends Command {
+export default class ExampleOwnerCommand extends Command {
   async run(message: Message) {
-    message.reply('Hey!');
+    return message.reply('Hey!');
   }
 }

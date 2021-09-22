@@ -8,12 +8,18 @@ export default class Client extends SapphireClient {
 
     container.stores.register(new SlashCommandStore());
 
-    Store.defaultStrategy.onLoad = (store, piece) => this.logger.info(`Loading ${store.name}:${piece.name}`);
+    if (options.debug) Store.defaultStrategy.onLoad = (store, piece) => this.logger.info(`Loading ${store.name}:${piece.name}`);
   }
 }
 
 declare module '@sapphire/pieces' {
   export interface StoreRegistryEntries {
     slashCommands: SlashCommandStore;
+  }
+}
+
+declare module '@sapphire/framework' {
+  interface Preconditions {
+    OwnerOnly: never;
   }
 }

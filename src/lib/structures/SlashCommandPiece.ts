@@ -1,3 +1,6 @@
+/* Reference:
+ * https://github.com/YorkAARGH/Sapphire-slashies-example/blob/master/src/lib/structures/SlashCommandPiece.js
+ */
 import { Piece, PieceContext, PieceOptions } from '@sapphire/framework';
 import type { ApplicationCommandData, CommandInteraction } from 'discord.js';
 
@@ -6,7 +9,7 @@ export interface SlashCommandOptions extends PieceOptions {
   guildOnly?: boolean;
 }
 
-interface SlashCommand {
+declare interface SlashCommand {
   // eslint-disable-next-line no-unused-vars
   run(interaction: CommandInteraction): unknown;
 }
