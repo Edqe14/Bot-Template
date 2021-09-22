@@ -2,33 +2,38 @@
   "name": "template",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "./src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts"
+    "start": "node -r tsconfig-paths/register dist/index.js",
+    "dev": "nodemon -r tsconfig-paths/register src/index.ts",
+    "build": "tsc -p ./tsconfig.json && tscpaths -p ./tsconfig.json"
   },
   "author": "Edqe_",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
-    "discord-akairo": "^8.1.0",
-    "discord.js": "^12.5.1",
-    "dotenv": "^8.2.0",
-    "nodemon": "^2.0.6"
+    "@sapphire/decorators": "2.2.0",
+    "@sapphire/discord.js-utilities": "2.0.2",
+    "@sapphire/framework": "2.0.0-next.71c18830.0",
+    "@sapphire/utilities": "2.0.1",
+    "chalk": "4.1.2",
+    "discord.js": "13.1.0"
   },
   "devDependencies": {
-    "@types/node": "^15.0.1",
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
-    "eslint": "^7.25.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-eslint-plugin": "^3.0.2",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.23.2",
-    "prettier": "^2.2.1",
-    "typescript": "^4.2.4"
+    "@types/node": "16.9.6",
+    "@typescript-eslint/eslint-plugin": "4.31.2",
+    "@typescript-eslint/parser": "4.31.2",
+    "dotenv": "10.0.0",
+    "eslint": "7.32.0",
+    "eslint-config-airbnb-base": "14.2.1",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.24.2",
+    "eslint-plugin-prettier": "4.0.0",
+    "nodemon": "2.0.12",
+    "prettier": "2.4.1",
+    "ts-node": "10.2.1",
+    "tsconfig-paths": "3.11.0",
+    "tscpaths": "0.0.9",
+    "typescript": "4.4.3"
   }
 }

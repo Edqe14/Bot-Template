@@ -5,6 +5,7 @@
     "rootDir": "src",
     "module": "commonjs",
     "target": "es2019",
+    "strict": true,
     "lib": [
       "esnext",
       "esnext.array",
@@ -20,15 +21,16 @@
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "resolveJsonModule": true,
+    "experimentalDecorators": true,
     "baseUrl": "./src/",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
-    },
+      "@/*": ["./*"]
+    }
   },
+  "include": [
+    "**/*.ts"
+  ],
   "exclude": [
-    "tests",
-    "node_modules",
+    "node_modules"
   ]
 }
