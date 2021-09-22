@@ -1,8 +1,7 @@
-import { join } from 'path';
-import dotenv from 'dotenv';
-import Client from './modules/client';
-dotenv.config({ path: join(__dirname, '.env') });
+import Client from './lib/Client';
+import { TOKEN, CLIENT_CONFIG } from './config';
 
-import config from './config';
+const client = new Client(CLIENT_CONFIG);
+client.login(TOKEN);
 
-export default new Client(config).start();
+export default client;
