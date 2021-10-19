@@ -7,6 +7,7 @@ import type { ApplicationCommandData, CommandInteraction } from 'discord.js';
 export interface SlashCommandOptions extends PieceOptions {
   commandData: ApplicationCommandData;
   guildOnly?: boolean;
+  preconditions?: string[];
 }
 
 declare interface SlashCommand {
@@ -20,11 +21,14 @@ class SlashCommand extends Piece {
 
   public readonly commandData: ApplicationCommandData;
 
+  public readonly preconditions: string[];
+
   constructor(context: PieceContext, options: SlashCommandOptions) {
     super(context, options);
 
     this.guildOnly = options.guildOnly ?? false;
     this.commandData = options.commandData;
+    this.preconditions = options.preconditions ?? [];
   }
 }
 

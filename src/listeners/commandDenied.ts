@@ -1,4 +1,5 @@
 import CommandEventPayload from '@/types/CommandEventPayload';
+import replyInteraction from '@/utils/replyInteraction';
 import {
   Listener, ListenerOptions, UserError, PieceContext
 } from '@sapphire/framework';
@@ -13,8 +14,14 @@ export default class CommandDeniedListener extends Listener {
 
   async run(
     error: UserError,
-    { message }: CommandEventPayload
+    { message, interaction }: CommandEventPayload
   ) {
-    return message.reply(error.message);
+    if (interaction) {
+      replyInteraction(interaction, {
+        content: error.message
+      });
+    } else if (message) {
+      message.reply(error.message);
+    }
   }
 }

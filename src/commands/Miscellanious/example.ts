@@ -7,7 +7,7 @@ import type { Message } from 'discord.js';
   description: 'Example'
 })
 export default class ExampleCommand extends Command {
-  async run(message: Message) {
+  async messageRun(message: Message) {
     message.reply('Hey!');
   }
 }

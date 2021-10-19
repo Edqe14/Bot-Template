@@ -1,5 +1,7 @@
 import { Listener } from '@sapphire/framework';
+import Config from '@/config';
 import type { CommandInteraction } from 'discord.js';
+import replyInteraction from '@/utils/replyInteraction';
 
 export class InteractionCreate extends Listener {
   public async run(interaction: CommandInteraction) {
@@ -9,6 +11,31 @@ export class InteractionCreate extends Listener {
     if (!cmd || !cmd.run) return;
 
     try {
+      if (Config.autoDefer) {
+        await interaction.deferReply({
+          ephemeral: Config.autoEphemeral
+        });
+      }
+
+      const allPre = this.container.stores.get('preconditions')
+        .filter((p) => cmd.preconditions.includes(p.name))
+        .map((p) => p);
+      const cmdDenied = this.container.stores.get('listeners').find((l) => l.event === 'commandDenied');
+      // eslint-disable-next-line no-restricted-syntax
+      for (const pre of allPre) {
+        if (pre?.runSlash) {
+          // eslint-disable-next-line no-await-in-loop
+          const res = await pre.runSlash(interaction);
+          if (!res.success) {
+            cmdDenied?.emitter?.emit('commandDenied', res.error, {
+              interaction,
+              command: cmd
+            });
+            return;
+          }
+        }
+      }
+
       cmd.run(interaction);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
@@ -21,13 +48,7 @@ export class InteractionCreate extends Listener {
         ephemeral: true
       };
 
-      if (interaction.replied) {
-        interaction.followUp(body).catch(fatal);
-      } else if (interaction.deferred) {
-        interaction.editReply(body).catch(fatal);
-      } else {
-        interaction.reply(body).catch(fatal);
-      }
+      replyInteraction(interaction, body).catch(fatal);
     }
   }
 }

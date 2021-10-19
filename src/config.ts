@@ -10,6 +10,8 @@ Dotenv.config({
 export interface Config extends ClientOptions {
   owners: string[];
   debug?: boolean;
+  autoEphemeral?: boolean;
+  autoDefer?: boolean;
 }
 
 export const PREFIX = 'sp!';
