@@ -7,10 +7,16 @@ A Discord bot template using [SapphireJS](https://www.sapphirejs.com/) framework
 ## Features
 
 1. 🎉 Typescript
-2. 🔧 Commands (Prefixes, Slash, Mention)
+2. 🔧 Commands (Messages & Slash)
 3. 🎯 Absolute paths
 4. 🔍 Linting
 5. 🦋 Prettier
+
+## Modules
+
+1. 🔗 Slash command
+2. 🕒 Scheduler (using [`node-cron`](https://www.npmjs.com/package/node-cron))
+3. 💂‍♂️ Owner-only command
 
 ## License
 
