@@ -23,6 +23,8 @@ export default class CommandErrorListener extends Listener {
     { message, piece }: CommandErrorPayload
   ) {
     this.container.logger.error(error);
-    return message.reply(`Whoops! Look like there was an error in the command you just ran.\n\n__**Debug**__\n\`\`\`js\nName: ${piece.name}\nTimestamp: ${message.createdTimestamp}\n\n${error.name}: ${error.message}\`\`\``);
+    if (message) {
+      message.reply(`Whoops! Look like there was an error in the command you just ran.\n\n__**Debug**__\n\`\`\`js\nName: ${piece.name}\nTimestamp: ${message.createdTimestamp}\n\n${error.name}: ${error.message}\`\`\``);
+    }
   }
 }

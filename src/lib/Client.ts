@@ -1,7 +1,10 @@
 import { Config } from '@/config';
-import { container, SapphireClient, Store } from '@sapphire/framework';
+import {
+  container, PreconditionResult, SapphireClient, Store
+} from '@sapphire/framework';
 import SlashCommandStore from './structures/SlashCommandStore';
 import SchedulerStore from './structures/SchedulerStore';
+import UserInteraction from '@/types/UserInteraction';
 
 export default class Client extends SapphireClient {
   constructor(options: Config) {
@@ -24,5 +27,10 @@ declare module '@sapphire/pieces' {
 declare module '@sapphire/framework' {
   interface Preconditions {
     OwnerOnly: never;
+  }
+
+  export interface Precondition {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any,no-unused-vars
+    runSlash(interaction: UserInteraction): PreconditionResult;
   }
 }
