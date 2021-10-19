@@ -19,7 +19,7 @@ export default class SchedulerStore extends Store<Scheduler> {
   scheduleAll() {
     this.each((sc) => {
       try {
-        const task = schedule(sc.cron, () => sc.run(), sc.options);
+        const task = schedule(sc.cron, () => sc.run(), sc.opt);
         sc.setTask(task);
 
         this.timers.set(nanoid(), task);

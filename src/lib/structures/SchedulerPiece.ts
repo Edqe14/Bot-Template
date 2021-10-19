@@ -3,7 +3,7 @@ import { ScheduledTask, ScheduleOptions } from 'node-cron';
 
 export interface SchedulerOptions extends PieceOptions {
   cron: string;
-  options?: ScheduleOptions;
+  opt?: ScheduleOptions;
 }
 
 declare interface Scheduler {
@@ -15,7 +15,7 @@ declare interface Scheduler {
 class Scheduler extends Piece {
   public cron: string;
 
-  public options?: ScheduleOptions;
+  public opt?: ScheduleOptions;
 
   public task?: ScheduledTask;
 
@@ -23,7 +23,7 @@ class Scheduler extends Piece {
     super(context, options);
 
     this.cron = options.cron;
-    this.options = options.options;
+    this.opt = options.opt;
   }
 
   setTask(task: ScheduledTask) {

@@ -8,7 +8,7 @@ import type { Message } from 'discord.js';
   preconditions: ['OwnerOnly']
 })
 export default class ExampleOwnerCommand extends Command {
-  async run(message: Message) {
+  async messageRun(message: Message) {
     return message.reply('Hey!');
   }
 }
