@@ -4,7 +4,7 @@ import Dotenv from 'dotenv';
 import { join } from 'path';
 
 Dotenv.config({
-  path: join(__dirname, '.env')
+  path: join(__dirname, '..', '.env')
 });
 
 export interface Config extends ClientOptions {
