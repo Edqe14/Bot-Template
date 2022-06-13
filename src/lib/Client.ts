@@ -1,6 +1,6 @@
 import { Config } from '@/config';
 import {
-  container, PreconditionResult, SapphireClient, Store
+  container, PreconditionResult, SapphireClient
 } from '@sapphire/framework';
 import SlashCommandStore from './structures/SlashCommandStore';
 import SchedulerStore from './structures/SchedulerStore';
@@ -12,8 +12,6 @@ export default class Client extends SapphireClient {
 
     container.stores.register(new SlashCommandStore());
     container.stores.register(new SchedulerStore());
-
-    if (options.debug) Store.defaultStrategy.onLoad = (store, piece) => this.logger.info(`Loading ${store.name}:${piece.name}`);
   }
 }
 

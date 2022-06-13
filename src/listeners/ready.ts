@@ -1,7 +1,7 @@
 import {
   Listener, ListenerOptions, PieceContext
 } from '@sapphire/framework';
-import { blue, green, red } from 'chalk';
+import chalk from 'chalk';
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -16,8 +16,15 @@ export default class ReadyListener extends Listener {
 
   async run() {
     await this.createSlashCommands();
+    this.schedule();
 
-    this.container.logger.info(`[${red(dev ? 'DEVELOPMENT' : 'PRODUCTION')}] ${this.container.client.user?.tag} is ready!`);
+    this.container.logger.info(`[${chalk.red(dev ? 'DEVELOPMENT' : 'PRODUCTION')}] ${this.container.client.user?.tag} is ready!`);
+  }
+
+  schedule() {
+    const schedulerStore = this.container.stores.get('schedulers');
+
+    schedulerStore.scheduleAll();
   }
 
   async createSlashCommands() {
@@ -26,11 +33,11 @@ export default class ReadyListener extends Listener {
 
     if (slashCommandsStore) {
       try {
-        this.container.logger.info(blue('Registering slash commands...'));
+        this.container.logger.info(chalk.blue('Registering slash commands...'));
         const total = await slashCommandsStore.registerCommands();
-        this.container.logger.info(green(`Successfully registered ${total} slash commands!`));
+        this.container.logger.info(chalk.green(`Successfully registered ${total} slash commands!`));
       } catch (err) {
-        this.container.logger.fatal(red(err));
+        this.container.logger.fatal(chalk.red(err));
       }
     }
   }
