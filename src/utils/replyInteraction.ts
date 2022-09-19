@@ -1,4 +1,4 @@
-import UserInteraction from '@/types/UserInteraction';
+import UserInteraction from '@/types/userInteraction';
 import {
   MessagePayload,
   WebhookEditMessageOptions,

@@ -1,5 +1,5 @@
 import config from '@/config';
-import UserInteraction from '@/types/UserInteraction';
+import UserInteraction from '@/types/userInteraction';
 import { Precondition } from '@sapphire/framework';
 import { Message } from 'discord.js';
 

@@ -26,11 +26,12 @@ export class InteractionCreate extends Listener {
         if (pre?.runSlash) {
           // eslint-disable-next-line no-await-in-loop
           const res = await pre.runSlash(interaction);
-          if (!res.success) {
-            cmdDenied?.emitter?.emit('commandDenied', res.error, {
+          if (!res.isOk()) {
+            cmdDenied?.emitter?.emit('commandDenied', res.err().unwrap(), {
               interaction,
               command: cmd
             });
+
             return;
           }
         }
@@ -41,6 +42,7 @@ export class InteractionCreate extends Listener {
     } catch (e: any) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const fatal = (err: any) => this.container.logger.fatal(err);
+
       fatal(e);
 
       const body = {

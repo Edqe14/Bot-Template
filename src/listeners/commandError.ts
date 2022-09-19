@@ -1,4 +1,4 @@
-import CommandEventPayload from '@/types/CommandEventPayload';
+import CommandEventPayload from '@/types/commandEventPayload';
 import {
   Args,
   Command,

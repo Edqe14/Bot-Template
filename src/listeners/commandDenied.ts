@@ -1,4 +1,4 @@
-import CommandEventPayload from '@/types/CommandEventPayload';
+import CommandEventPayload from '@/types/commandEventPayload';
 import replyInteraction from '@/utils/replyInteraction';
 import {
   Listener, ListenerOptions, UserError, PieceContext

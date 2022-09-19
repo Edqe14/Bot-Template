@@ -1,7 +1,7 @@
 /* Reference:
  * https://github.com/YorkAARGH/Sapphire-slashies-example/blob/master/src/lib/structures/SlashCommandStore.js
  */
-import Scheduler from './SchedulerPiece';
+import Scheduler from './schedulerPiece';
 import { Store } from '@sapphire/framework';
 import { schedule, ScheduledTask, validate } from 'node-cron';
 import { Collection } from 'discord.js';

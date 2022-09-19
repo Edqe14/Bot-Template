@@ -2,9 +2,9 @@ import { Config } from '@/config';
 import {
   container, PreconditionResult, SapphireClient
 } from '@sapphire/framework';
-import SlashCommandStore from './structures/SlashCommandStore';
-import SchedulerStore from './structures/SchedulerStore';
-import UserInteraction from '@/types/UserInteraction';
+import SlashCommandStore from './structures/slashCommandStore';
+import SchedulerStore from './structures/schedulerStore';
+import UserInteraction from '@/types/userInteraction';
 
 export default class Client extends SapphireClient {
   constructor(options: Config) {

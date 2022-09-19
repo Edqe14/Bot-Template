@@ -21,7 +21,7 @@ class SlashCommand extends Piece {
 
   public readonly commandData: ApplicationCommandData;
 
-  public readonly preconditions: string[];
+  public readonly preconditions: string[] = [];
 
   constructor(context: PieceContext, options: SlashCommandOptions) {
     super(context, options);
