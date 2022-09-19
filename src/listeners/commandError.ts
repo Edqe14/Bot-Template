@@ -1,9 +1,9 @@
-import CommandEventPayload from '@/types/commandEventPayload';
 import {
   Args,
   Command,
   Listener, ListenerOptions, PieceContext
 } from '@sapphire/framework';
+import CommandEventPayload from '@/types/commandEventPayload';
 
 interface CommandErrorPayload extends CommandEventPayload {
   args: Args;

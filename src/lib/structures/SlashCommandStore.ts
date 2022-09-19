@@ -1,8 +1,8 @@
 /* Reference:
  * https://github.com/YorkAARGH/Sapphire-slashies-example/blob/master/src/lib/structures/SlashCommandStore.js
  */
-import SlashCommand from './slashCommandPiece';
 import { Store } from '@sapphire/framework';
+import SlashCommand from './slashCommandPiece';
 
 export default class SlashCommandStore extends Store<SlashCommand> {
   constructor() {
@@ -10,7 +10,7 @@ export default class SlashCommandStore extends Store<SlashCommand> {
   }
 
   async registerCommands() {
-    const client = this.container.client;
+    const { client } = this.container;
     const [guildCmds, globalCmds] = this.partition(c => c.guildOnly);
 
     const guilds = await client?.guilds?.fetch();

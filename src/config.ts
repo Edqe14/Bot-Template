@@ -1,5 +1,6 @@
 import { Logger, LogLevel } from '@sapphire/framework';
 import { ClientOptions, Intents } from 'discord.js';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Dotenv from 'dotenv';
 import { join } from 'path';
 
@@ -38,6 +39,6 @@ export const CLIENT_CONFIG: Config = {
   },
   debug: process.env.NODE_ENV !== 'production'
 };
-export const TOKEN = process.env.TOKEN;
+export const { TOKEN } = process.env;
 
 export default CLIENT_CONFIG;

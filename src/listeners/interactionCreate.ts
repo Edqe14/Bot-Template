@@ -1,9 +1,9 @@
 import { Listener } from '@sapphire/framework';
-import Config from '@/config';
 import type { CommandInteraction } from 'discord.js';
+import Config from '@/config';
 import replyInteraction from '@/utils/replyInteraction';
 
-export class InteractionCreate extends Listener {
+export default class InteractionCreate extends Listener {
   public async run(interaction: CommandInteraction) {
     if (!interaction.isCommand()) return;
 

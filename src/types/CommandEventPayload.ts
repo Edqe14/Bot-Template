@@ -1,6 +1,6 @@
-import SlashCommand from '@/lib/structures/slashCommandPiece';
 import { Command } from '@sapphire/framework';
 import { Message } from 'discord.js';
+import SlashCommand from '@/lib/structures/slashCommandPiece';
 import UserInteraction from './userInteraction';
 
 export default interface CommandEventPayload {

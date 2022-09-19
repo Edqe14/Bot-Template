@@ -1,9 +1,9 @@
-import UserInteraction from '@/types/userInteraction';
 import {
   MessagePayload,
   WebhookEditMessageOptions,
   InteractionReplyOptions
 } from 'discord.js';
+import UserInteraction from '@/types/userInteraction';
 
 const replyInteraction = (
   interaction: UserInteraction,

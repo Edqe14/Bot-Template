@@ -1,8 +1,8 @@
-import CommandEventPayload from '@/types/commandEventPayload';
-import replyInteraction from '@/utils/replyInteraction';
 import {
   Listener, ListenerOptions, UserError, PieceContext
 } from '@sapphire/framework';
+import CommandEventPayload from '@/types/commandEventPayload';
+import replyInteraction from '@/utils/replyInteraction';
 
 export default class CommandDeniedListener extends Listener {
   constructor(context: PieceContext, options?: ListenerOptions) {

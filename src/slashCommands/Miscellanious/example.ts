@@ -1,6 +1,6 @@
-import SlashCommand, { SlashCommandOptions } from '@/lib/structures/slashCommandPiece';
 import { ApplyOptions } from '@sapphire/decorators';
 import { CommandInteraction } from 'discord.js';
+import SlashCommand, { SlashCommandOptions } from '@/lib/structures/slashCommandPiece';
 
 @ApplyOptions<SlashCommandOptions>({
   guildOnly: true,

@@ -7,9 +7,9 @@ import {
 } from 'discord.js';
 
 type UserInteraction = ButtonInteraction
-  | CommandInteraction
-  | SelectMenuInteraction
-  | ContextMenuInteraction
-  | MessageComponentInteraction;
+| CommandInteraction
+| SelectMenuInteraction
+| ContextMenuInteraction
+| MessageComponentInteraction;
 
 export default UserInteraction;

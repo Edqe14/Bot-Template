@@ -1,7 +1,7 @@
-import config from '@/config';
-import UserInteraction from '@/types/userInteraction';
 import { Precondition } from '@sapphire/framework';
 import { Message } from 'discord.js';
+import config from '@/config';
+import UserInteraction from '@/types/userInteraction';
 
 export default class OwnerOnly extends Precondition {
   run(message: Message) {

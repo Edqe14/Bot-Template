@@ -1,7 +1,7 @@
-import { Config } from '@/config';
 import {
   container, PreconditionResult, SapphireClient
 } from '@sapphire/framework';
+import { Config } from '@/config';
 import SlashCommandStore from './structures/slashCommandStore';
 import SchedulerStore from './structures/schedulerStore';
 import UserInteraction from '@/types/userInteraction';
