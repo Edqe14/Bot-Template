@@ -2,6 +2,7 @@ import {
   Listener, ListenerOptions, PieceContext
 } from '@sapphire/framework';
 import chalk from 'chalk';
+import { parsed } from '@/lib/cli';
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -33,7 +34,16 @@ export default class ReadyListener extends Listener {
 
     if (slashCommandsStore) {
       try {
-        this.container.logger.info(chalk.blue('Registering slash commands...'));
+        if (parsed.opts().wipe) {
+          this.container.logger.info(chalk.yellow('Wiping all commands'));
+
+          await slashCommandsStore.wipeCommands();
+
+          this.container.logger.info(chalk.green('Wiped, exiting...'));
+          return process.exit(0);
+        }
+
+        this.container.logger.info(chalk.yellow('Registering slash commands...'));
         const total = await slashCommandsStore.registerCommands();
         this.container.logger.info(chalk.green(`Successfully registered ${total} slash commands!`));
       } catch (err) {

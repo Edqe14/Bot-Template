@@ -34,4 +34,21 @@ export default class SlashCommandStore extends Store<SlashCommand> {
 
     return guildCmds.size;
   }
+
+  async wipeCommands() {
+    const { client } = this.container;
+    const guilds = await client?.guilds?.fetch();
+
+    await Promise.all(guilds.map(async (_, id) => {
+      try {
+        const guild = await client?.guilds?.fetch(id);
+
+        await guild?.commands.set([]);
+      } catch {
+        this.container.logger.error(`Failed to wipe guild commands in ${id}`);
+      }
+    }));
+
+    await client.application?.commands.set([]);
+  }
 }
